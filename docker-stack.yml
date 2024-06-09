@@ -1,0 +1,85 @@
+version: '3.7'
+
+services:
+  backend:
+    image: tfself-backend:latest
+    volumes:
+      - ./Backend:/app
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 1
+
+  worker:
+    image: tfself-worker:latest
+    volumes:
+      - ./Worker:/app
+    ports:
+      - "5005"
+    deploy:
+      replicas: 1
+
+  frontend:
+    image: tfself-frontend:latest
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./Frontend:/app
+    deploy:
+      replicas: 1
+
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    deploy:
+      replicas: 1
+
+  rq-dashboard:
+    image: rq-dashboard:latest
+    ports:
+      - '9181:9181'
+    deploy:
+      replicas: 1
+
+  scaler:
+    image: tfself-scaler:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 1
+
+  gitlab:
+    image: gitlab/gitlab-ee:16.10.6-ee.0
+    restart: always
+    hostname: 'gitlab.example.com'
+    ports:
+      - "22:22"
+      - "80:80"
+    volumes:
+      - $GITLAB_HOME/data:/var/opt/gitlab
+      - $GITLAB_HOME/logs:/var/log/gitlab
+      - $GITLAB_HOME/config:/etc/gitlab 
+    environment:
+      GITLAB_OMNIBUS_CONFIG: "from_file('/omnibus_config.rb')"
+    configs:
+      - source: gitlab
+        target: /omnibus_config.rb
+    secrets:
+      - gitlab_root_password
+
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    deploy:
+      mode: replicated
+      replicas: 2
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+configs:
+  gitlab:
+    file: ./gitlab.rb
+
+secrets:
+  gitlab_root_password:
+    file: ./root_password.txt

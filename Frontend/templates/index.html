@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Service Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">    
+          <span class="close">&times;</span>       
+        </div>      
+    </div>
+
+    <div class="container">
+        <h1>Student Login</h1>      
+        <!-- Add this inside the container div -->
+        <div class="container">
+        <label for="user">Username:</label>
+        <input type="text" id="user" name="user" required>
+        </div>
+        <div class="container">
+        <label for="password">Password:</label>  
+        <input type="password" id="password" name="password" required>
+        <br>
+        </div>
+        <button id="login">Login</button>  
+        <br>
+        <button id="create_student">Create Student</button>  
+        <br>
+
+    </div>
+    <div class="container">
+        <h1>Redis Queue Status</h1>
+        <div class="container"> 
+        Total queued jobs:              
+        <label id="total_queue">{{ total_queue }}</label>      
+        </div>
+        <div class="container">
+        Total workers
+        <label id="total_workers">{{ finished_workers }}</label>        
+        </div>    
+        <div class="container">
+        Total finished jobs
+        <label id="total_jobs">{{ finished_jobs }}</label>  
+        </div>
+    </div>
+<!-- Hidden input field to pass show_modal value to JavaScript -->
+<input type="hidden" id="show_modal" value="{{ 'True' if show_modal else 'False' }}">
+</body>
+<!-- Include the JavaScript file -->
+<script src="{{ url_for('static', filename='modal.js') }}"></script>
+<script src="{{ url_for('static', filename='ajax.js') }}"></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</html>

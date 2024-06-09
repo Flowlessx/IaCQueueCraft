@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e;
+    color: white;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #353434e2;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+h1, h2 {
+    color: white;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    margin-bottom: 10px;
+}
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+button {
+    background-color: #6779eb;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin:10px;
+}
+button:hover {
+    background-color: #4a559e;
+}
+
+tbody {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  justify-content: center;
+  align-items: center;
+  color: #333; /* Text color */
+}
+
+tbody tr {
+  background-color: #f9f9f9; /* Row background color */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2; /* Alternate row background color */
+}
+
+tbody tr:hover {
+  background-color: #e0e0e0; /* Hover background color */
+}
+
+tbody td {
+  padding: 10px; /* Cell padding */
+  border-bottom: 1px solid #ddd; /* Bottom border */
+  width:10%;
+}
+
+tbody td:first-child {
+  border-left: 1px solid #ddd; /* Left border for the first cell */
+}
+
+tbody td:last-child {
+  border-right: 1px solid #ddd; /* Right border for the last cell */
+}
+
+
+/* Styling for modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide the main scrollbar */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color: white;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #1e1e1e;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    min-height: 50%;
+    border: 4px solid #888;
+    width: 75%; /* Could be more or less, depending on screen size */
+    color: white;
+    overflow-y: auto; /* Enable vertical scrollbar if needed */
+}
+
+/* Hide scrollbar but make it scrollable */
+.modal::-webkit-scrollbar {
+    width: 0; /* Hide scrollbar */
+}
+
+/* Optional: Style the track and thumb of the scrollbar */
+.modal::-webkit-scrollbar-track {
+    background: transparent; /* Transparent track */
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the thumb */
+}

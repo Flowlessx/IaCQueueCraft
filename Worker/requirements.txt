@@ -1,0 +1,9 @@
+Flask==2.0.3
+redis==4.2.1
+rq==1.16.2
+requests==2.27.1
+Werkzeug==2.0.3
+SQLAlchemy==2.0.29
+psycopg2-binary==2.9.9
+gunicorn
+bcrypt

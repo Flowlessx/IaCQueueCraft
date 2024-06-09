@@ -1,0 +1,78 @@
+services:
+  backend:
+    build:
+      context: ./Backend  # Path to the frontend Dockerfile
+    volumes:
+      - ./Backend:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+      - frontend
+
+  worker:
+    build: 
+      context: ./Worker  # Path to the frontend Dockerfile
+    volumes:
+      - ./Worker:/app
+    ports:
+      - "5005"
+    depends_on:
+      - redis
+      - backend
+      - frontend
+
+  frontend:
+    build:
+      context: ./Frontend  # Path to the frontend Dockerfile
+    volumes:
+      - ./Frontend:/app
+    ports:
+      - "5001:5001"  # Map port 80 in the container to port 8080 on the host
+  
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+  
+  rq-dashboard:
+    image: rq-dashboard
+    build:
+        context: .
+        dockerfile: rq-dashboard/Dockerfile
+    ports:
+        - '9181:9181'
+    expose:
+        - "9181"
+    links:
+        - redis
+    depends_on:
+        - redis
+
+  scaler:
+    build:
+      context: ./Scaler
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+        - redis
+        - worker
+  
+  gitlab:
+    image: gitlab/gitlab-ee:16.10.6-ee.0
+    container_name: gitlab
+    restart: always
+    hostname: 'gitlab.example.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://gitlab.example.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '22:22'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    shm_size: '256m'
