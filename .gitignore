@@ -1,0 +1,12 @@
+env*
+*env
+*env*
+venv*
+*venv
+*venv*
+pycache*
+*pycache
+*pycache*
+__pycache__
+./frontend/__pycache__
+./application/__pycache__

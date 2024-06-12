@@ -2,7 +2,7 @@
 function updateQueueStatus() {
     $.ajax({
         url: '/queue_status',
-        type: 'POST',
+        type: 'GET',
         success: function(response) {
             // Assuming response has the structure {'message': {'total_queue': x, 'total_jobs': z}}
             if (response.message) {
@@ -20,7 +20,7 @@ function updateQueueStatus() {
 function updateWorkerStatus() {
     $.ajax({
         url: '/worker_status',
-        type: 'POST',
+        type: 'GET',
         success: function(response) {
             // Assuming response has the structure {'message': {'total_queue': x, 'total_jobs': z}}
             if (response.message) {                   

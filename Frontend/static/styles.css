@@ -5,6 +5,44 @@ body {
     background-color: #1e1e1e;
     color: white;
 }
+@keyframes moveShadow {
+  0% {
+    text-shadow:
+      -4px 0 1px rgb(255, 255, 255, 0.1), 
+      -4px 0 1px rgb(255, 255, 255,0.1), 
+      -4px 0 6px rgb(62, 0, 121), 
+      -4px 0 8px rgba(140, 0, 255, 0.5), 
+      -4px 0 10px rgba(0, 217, 255, 0.5), 
+      -4px 0 12px rgba(0, 195, 255, 0.5), 
+      -4px 0 14px rgba(119, 0, 255, 0.5);
+  }
+  100% {
+    text-shadow:
+      4px 0 1px rgb(255, 255, 255, 0.1), 
+      4px 0 1px rgb(255, 255, 255, 0.1), 
+      4px 0 6px rgb(62, 0, 121, 0.1), 
+      4px 0 8px rgba(140, 0, 255, 0.5), 
+      4px 0 10px rgba(0, 217, 255, 0.5), 
+      4px 0 12px rgba(0, 195, 255, 0.5), 
+      4px 0 14px rgba(119, 0, 255, 0.5);
+  }
+}
+
+.custom-font {
+  font-family: 'MyCustomFont', sans-serif;
+  font-size: 72px; /* Adjust this size as needed */
+  background: linear-gradient(90deg, blue, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: moveShadow 3s infinite alternate;
+}
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('robo5.ttf') format('truetype');
+}
+
+
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -15,6 +53,10 @@ body {
     align-items: center;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-width: 2px;
+    border-style: solid 2px;
+    border-color: rgba(0, 195, 255, 0.5);
 }
 h1, h2 {
     color: white;

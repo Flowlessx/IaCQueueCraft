@@ -24,7 +24,8 @@ USER nobody
 
 # Expose port 5000 for the Flask app
 EXPOSE 5001
-
+ENV BACKEND_HOST=http://backend
+ENV BACKEND_PORT=5000
 # Define environment variable
 ENV FLASK_APP=app.py
 

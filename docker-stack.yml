@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   backend:
-    image: tfself-backend:latest
+    image: iacqueuecraft-backend:latest
     volumes:
       - ./Backend:/app
     ports:
@@ -11,7 +11,7 @@ services:
       replicas: 1
 
   worker:
-    image: tfself-worker:latest
+    image: iacqueuecraft-worker:latest
     volumes:
       - ./Worker:/app
     ports:
@@ -20,7 +20,7 @@ services:
       replicas: 1
 
   frontend:
-    image: tfself-frontend:latest
+    image: iacqueuecraft-frontend:latest
     ports:
       - "5001:5001"
     volumes:
@@ -43,7 +43,7 @@ services:
       replicas: 1
 
   scaler:
-    image: tfself-scaler:latest
+    image: iacqueuecraft-scaler:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
@@ -76,6 +76,17 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: root
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
 configs:
   gitlab:
     file: ./gitlab.rb
@@ -83,3 +94,8 @@ configs:
 secrets:
   gitlab_root_password:
     file: ./root_password.txt
+  postgres_password:
+    file: ./postgres_password.txt
+
+volumes:
+  postgres_data:

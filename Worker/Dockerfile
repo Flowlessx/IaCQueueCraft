@@ -11,5 +11,11 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 RUN ls -l /app
 # Define environment variable
-
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
+ENV DB_USER=root
+ENV DB_PASSWORD=root
+ENV DB_HOST=postgres
+ENV DB_NAME=root
+ENV Gitlab_Token=glpat-BWPnFeRJxzCum47VRUaV
 CMD ["python", "-u", "app.py"]

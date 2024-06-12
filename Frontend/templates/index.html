@@ -15,46 +15,112 @@
     </div>
 
     <div class="container">
-        <h1>Student Login</h1>      
-        <!-- Add this inside the container div -->
-        <div class="container">
-        <label for="user">Username:</label>
-        <input type="text" id="user" name="user" required>
+        <h1 class="custom-font">IaC Queue Craft</h1>       
+        <div class="container">      
+            <div class="container">
+                <h2>Register Company</h2>   
+                <label for="name">Company name</label>
+                <input type="text" id="name" name="name" required>
+            </div>        
+            <br>
+            <button id="register_company">Register Company</button>  
+            <br>
+            <button id="get_companies">Load Companies</button>  
+            <br>
         </div>
         <div class="container">
-        <label for="password">Password:</label>  
-        <input type="password" id="password" name="password" required>
-        <br>
+            <h2>Create Company Cloud Account</h2> 
+            <div class="container">
+                <div class="container">
+                    <label for="company_cloud_account_create">Company</label>
+                    <select id="company_cloud_account_create" name="company_cloud_account" required>
+          
+                    </select>                 
+                </div> 
+                <label for="account_platform">Cloud Platform</label>
+                <select id="account_platform" name="account_platform" required>
+                    <option value="aws">Amazon Webservices</option>
+                    <option value="microsoft">Microsoft Azure Platform</option>
+                    <option value="google">Google Cloud</option>
+                </select>
+            </div>  
+            <div class="container">
+                <label for="account">Account name</label>
+                <input type="text" id="account" name="account" required>
+            </div>
+            <div class="container">
+                <label for="account_type">Account type:</label>
+                <select id="account_type" name="account_type" required>
+                    <option value="managed">Managed</option>
+                    <option value="unmanaged">Unmanaged</option>
+                    <option value="external">External</option>
+                </select>
+            </div>  
+            <br>
+            <button id="create_account">Create Account</button>     
         </div>
-        <button id="login">Login</button>  
-        <br>
-        <button id="create_student">Create Student</button>  
-        <br>
-
+        <div class="container">
+            <h2>Company Cloud accounts</h2>
+            <div class="container">
+                <label for="company_cloud_account_list">Company</label>
+                <select id="company_cloud_account_list" name="company_cloud_account_list" required>
+                    
+                </select>
+                <button id="get_account">Get Accounts</button>  
+            </div>  
+            <!-- Table to display AWS accounts information -->
+            <table id="aws_accounts_table" border="1">
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Account Name</th>
+                        <th>Account Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <h2>Company Account Resources</h2>
+            <div class="container">
+                <label for="company_account">Company</label>
+                <select id="company_account" name="company_account" required>
+                    <option value="account1">Account 1</option>
+                    <option value="account2">Account 2</option>
+                    <option value="account3">Account 3</option>
+                </select>    
+            </div>  
+            <!-- Table to display AWS accounts information -->
+            <table id="aws_account_resources_table" border="1">
+                <thead>
+                    <tr>
+                        <th>Cloud Platform</th>
+                        <th>Account Name</th>
+                        <th>Account Type</th>
+                        <th>Resource Name</th>
+                        <th>Resource Type</th>
+                        <th>Resource State</th>
+                        <th>Resource Config</th>                    
+                        <th>Resource Costs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <!-- Hidden input field to pass show_modal value to JavaScript -->
+        <input type="hidden" id="show_modal" value="{{ 'True' if show_modal else 'False' }}">
     </div>
-    <div class="container">
-        <h1>Redis Queue Status</h1>
-        <div class="container"> 
-        Total queued jobs:              
-        <label id="total_queue">{{ total_queue }}</label>      
-        </div>
-        <div class="container">
-        Total workers
-        <label id="total_workers">{{ finished_workers }}</label>        
-        </div>    
-        <div class="container">
-        Total finished jobs
-        <label id="total_jobs">{{ finished_jobs }}</label>  
-        </div>
-    </div>
-<!-- Hidden input field to pass show_modal value to JavaScript -->
-<input type="hidden" id="show_modal" value="{{ 'True' if show_modal else 'False' }}">
+    
+    <!-- Include the JavaScript file -->
+    <script src="{{ url_for('static', filename='modal.js') }}"></script>
+    <script src="{{ url_for('static', filename='ajax.js') }}"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
 </body>
-<!-- Include the JavaScript file -->
-<script src="{{ url_for('static', filename='modal.js') }}"></script>
-<script src="{{ url_for('static', filename='ajax.js') }}"></script>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
 </html>

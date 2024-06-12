@@ -6,3 +6,4 @@ requests==2.27.1
 Werkzeug==2.0.3
 SQLAlchemy==2.0.29
 gunicorn
+gevent

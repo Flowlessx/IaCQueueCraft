@@ -1,0 +1,4 @@
+curl --request POST --header "Private-Token: glpat-BWPnFeRJxzCum47VRUaV" \
+     --data "name=test" \
+     --data "namespace_id=main" \  # optional
+     http://172.21.86.168/api/v4/projects
