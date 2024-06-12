@@ -2,6 +2,10 @@
 
 IaC Queue Craft is a robust and scalable infrastructure designed to facilitate self-service deployment and management of background tasks using Redis Queue (RQ). This solution leverages Docker, Python with Flask, RQ, SQLAlchemy, and Docker Swarm to provide a seamless environment for handling asynchronous tasks efficiently.
 
+
+![AWS io s7 (8)](https://github.com/Flowlessx/IaCQueueCraft/assets/22098362/8334ac6c-a602-499f-a9c6-96987d7d7fcb)
+
+
 ## Key Components
 
 1. **Backend Service:** The core of the application, providing RESTful APIs and managing task processing logic.
